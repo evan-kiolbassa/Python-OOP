@@ -5,3 +5,5 @@ Within the data structures.py file you will find the following classes:
 2.) Queue
 3.) Stack
 4.) Dictionary
+
+The Pipeline Class.py file contains Pipeline class source code
