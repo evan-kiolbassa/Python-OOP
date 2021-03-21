@@ -7,3 +7,4 @@ Within the data structures.py file you will find the following classes:
 4.) Dictionary
 
 The Pipeline Class.py file contains Pipeline class source code
+with task scheduling by DAG algorithm.
