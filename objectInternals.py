@@ -28,6 +28,28 @@ class Vector:
         }
         self.__dict__.update(private_components)
 
+    def __getattr__(self, name):
+        '''
+        Invoked after a failed attribute lookup. 
+        This is required to grant read access to
+        the immutable attribute.
+        '''
+        private_name = f"_{name=}"
+        try:
+            self.__dict__[private_name] # Checks to see if attribute is in the class dictionary
+        except KeyError:
+            raise AttributeError(f"{self!r} object has not attribute {name!r}") # Raises error if attribute does not exist
+        # This removes the potential for Maximum Recursion Depth error raise from non-existent attribute calls
+        return getattr(self, private_name)
+        
+    def __setattr__(self, name, value):
+        '''
+        Raises an attribute error whenever a user attempts to
+        overwrite the immutable attribute. Effectively preventing read
+        access to the custom attribute.
+        '''
+        raise AttributeError(f'Cannot set attribute {name!r}')
+
     def __repr__(self):
         """
         __repr__ is a special method used to represent a class's 
